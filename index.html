@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>이율곡 · Marketing Performance Dashboard</title>
+  <meta name="description" content="데이터 기반 마케팅 기획자 이율곡. 계열 평균 대비 +433% 성과, AI 파이프라인 설계로 생산성 7.5배 향상.">
+  <meta name="author" content="이율곡">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="이율곡 · Marketing Portfolio">
+  <meta property="og:description" content="계열 평균 대비 +433% 성과를 달성한 1인 마케터의 데이터 대시보드 포트폴리오">
+  <meta property="og:image" content="https://yulgoklee.github.io/yulgok-marketing/og-image.png">
+  <meta property="og:url" content="https://yulgoklee.github.io/yulgok-marketing/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="이율곡 · Marketing Portfolio">
+  <meta name="twitter:description" content="계열 평균 대비 +433% 성과를 달성한 1인 마케터의 데이터 대시보드 포트폴리오">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" aria-label="주요 메뉴">
+    <div class="nav__inner">
+      <a href="#overview" class="nav__brand">
+        <span class="nav__brand-dot" aria-hidden="true"></span>
+        <span class="nav__brand-text">YULGOK.LEE <span class="nav__brand-sub">/ MARKETING</span></span>
+      </a>
+      <ul class="nav__menu">
+        <li><a href="#overview" data-nav="overview">Overview</a></li>
+        <li><a href="#performance" data-nav="performance">Performance</a></li>
+        <li><a href="#strategy" data-nav="strategy">Strategy</a></li>
+        <li><a href="#crisis" data-nav="crisis">Crisis</a></li>
+        <li><a href="#ai-pipeline" data-nav="ai-pipeline">AI Pipeline</a></li>
+        <li><a href="#contact" data-nav="contact">Contact</a></li>
+      </ul>
+      <div class="nav__status" aria-label="현재 상태">
+        <span class="nav__status-dot" aria-hidden="true"></span>
+        <span class="nav__status-text">AVAILABLE</span>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- Hero / Overview -->
+    <section id="overview" class="hero">
+      <div class="container">
+        <p class="hero__meta">PORTFOLIO · 2026 · DATA-DRIVEN MARKETING · 27 MONTHS · SOLO OPERATION</p>
+
+        <h1 class="hero__title">
+          Marketing,<br>
+          by <em>data</em> and <em>system</em>.
+        </h1>
+
+        <p class="hero__lede">
+          네이버 블로그 + 키워드 광고 기반 마케팅 전략을 직접 수립·운영하여
+          <strong>계열 평균 대비 +433%</strong> 성과를 달성한 1인 마케터.
+          AI 파이프라인을 직접 설계해 콘텐츠 생산성 <strong>7.5배</strong>를 끌어올린 실전형 마케터입니다.
+        </p>
+
+        <div class="kpi-grid">
+          <article class="kpi-card">
+            <div class="kpi-card__top-line" aria-hidden="true"></div>
+            <div class="kpi-card__value" data-counter="433" data-prefix="+" data-suffix="%">+0%</div>
+            <div class="kpi-card__label">PEER AVG OVERPERFORMANCE</div>
+            <div class="kpi-card__sub">2년차 기준 · 계열 3건 vs 본인 16건</div>
+          </article>
+
+          <article class="kpi-card">
+            <div class="kpi-card__top-line" aria-hidden="true"></div>
+            <div class="kpi-card__value" data-counter="58" data-prefix="+" data-suffix="%">+0%</div>
+            <div class="kpi-card__label">REVENUE GROWTH (Y/Y)</div>
+            <div class="kpi-card__sub">1.37억 → 2.17억</div>
+          </article>
+
+          <article class="kpi-card">
+            <div class="kpi-card__top-line" aria-hidden="true"></div>
+            <div class="kpi-card__value" data-counter="1143" data-suffix="개">0개</div>
+            <div class="kpi-card__label">BLOG CONTENT ASSET</div>
+            <div class="kpi-card__sub">월 평균 42개 발행 · 27개월</div>
+          </article>
+
+          <article class="kpi-card kpi-card--highlight">
+            <div class="kpi-card__top-line" aria-hidden="true"></div>
+            <div class="kpi-card__value" data-counter="7.5" data-suffix="x" data-decimals="1">0.0x</div>
+            <div class="kpi-card__label">AI PRODUCTIVITY GAIN</div>
+            <div class="kpi-card__sub">멀티모델 파이프라인 직접 설계</div>
+          </article>
+        </div>
+
+        <div class="hero__scroll">SCROLL TO EXPLORE ↓</div>
+      </div>
+    </section>
+
+    <!-- Performance Dashboard -->
+    <section id="performance" class="section">
+      <div class="container">
+        <header class="section__header">
+          <div class="section__number">01</div>
+          <h2 class="section__title">Performance <em>Dashboard</em></h2>
+          <p class="section__desc">계열 평균을 역주행하며 만든 27개월의 성과</p>
+          <p class="section__meta">2024.02 — 2026.04</p>
+        </header>
+
+        <!-- Main chart card -->
+        <div class="card card--wide">
+          <div class="card__header">
+            <div>
+              <h3 class="card__title">개인문의 추이 · vs 계열 평균</h3>
+              <p class="card__sub">월별 개인문의 건수와 계열 평균 비교 (단위: 건)</p>
+            </div>
+            <div class="card__mini-stats">
+              <div class="mini-stat">
+                <div class="mini-stat__value">16<span>건</span></div>
+                <div class="mini-stat__label">2년차 월평균</div>
+              </div>
+              <div class="mini-stat">
+                <div class="mini-stat__value">3<span>건</span></div>
+                <div class="mini-stat__label">계열 평균</div>
+              </div>
+              <div class="mini-stat mini-stat--accent">
+                <div class="mini-stat__value">+433<span>%</span></div>
+                <div class="mini-stat__label">상회율</div>
+              </div>
+            </div>
+          </div>
+          <div class="chart" id="chart-inquiry" aria-label="개인문의 추이 라인 차트"></div>
+          <div class="insight-box">
+            <span class="insight-box__label">INSIGHT</span>
+            계열 평균이 4 → 3건으로 하락하는 동안 개인문의는 9.3 → 16건으로 상승. 시장 위축 구간에서 역으로 성장하는 <strong>'Counter-trend Growth'</strong> 패턴을 만든 핵심 차트입니다.
+          </div>
+        </div>
+
+        <!-- Two-column charts -->
+        <div class="grid-2">
+          <div class="card">
+            <div class="card__header">
+              <div>
+                <h3 class="card__title">1년차 vs 2년차 비교</h3>
+                <p class="card__sub">4개 핵심 지표 정규화 비교</p>
+              </div>
+            </div>
+            <div class="chart" id="chart-comparison" aria-label="1년차 2년차 비교 바 차트"></div>
+          </div>
+
+          <div class="card">
+            <div class="card__header">
+              <div>
+                <h3 class="card__title">블로그 조회수 vs 개인문의</h3>
+                <p class="card__sub">콘텐츠 자산화 효과 (이중축)</p>
+              </div>
+            </div>
+            <div class="chart" id="chart-blog" aria-label="블로그 조회수 개인문의 이중축 차트"></div>
+            <p class="card__footnote">조회수가 줄어도 문의는 유지됨 — 콘텐츠 자산화 효과</p>
+          </div>
+        </div>
+
+        <!-- KPI Strip -->
+        <div class="kpi-strip">
+          <div class="kpi-strip__item">
+            <div class="kpi-strip__value" data-counter="334" data-suffix="건">0건</div>
+            <div class="kpi-strip__label">개인문의 총합</div>
+            <div class="kpi-strip__sub">27개월 누적</div>
+          </div>
+          <div class="kpi-strip__item">
+            <div class="kpi-strip__value" data-counter="3.70" data-suffix="억" data-decimals="2">0.00억</div>
+            <div class="kpi-strip__label">총 매출</div>
+            <div class="kpi-strip__sub">27개월 누적</div>
+          </div>
+          <div class="kpi-strip__item kpi-strip__item--accent">
+            <div class="kpi-strip__value" data-counter="74" data-prefix="+" data-suffix="%">+0%</div>
+            <div class="kpi-strip__label">평균 등록단가 향상</div>
+            <div class="kpi-strip__sub">53만원 → 93만원</div>
+          </div>
+          <div class="kpi-strip__item">
+            <div class="kpi-strip__value" data-counter="9" data-prefix="+" data-suffix="%p">+0%p</div>
+            <div class="kpi-strip__label">상담률 향상</div>
+            <div class="kpi-strip__sub">29% → 38%</div>
+          </div>
+          <div class="kpi-strip__item kpi-strip__item--accent">
+            <div class="kpi-strip__value" data-counter="25" data-suffix="x">0x</div>
+            <div class="kpi-strip__label">광고 ROAS</div>
+            <div class="kpi-strip__sub">월 10만원 광고비 기준</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marketing Strategy -->
+    <section id="strategy" class="section">
+      <div class="container">
+        <header class="section__header">
+          <div class="section__number">02</div>
+          <h2 class="section__title">Marketing <em>Strategy</em></h2>
+          <p class="section__desc">전략을 세우고 시스템으로 만든 5가지 핵심 역량</p>
+        </header>
+
+        <div class="capability-grid">
+          <article class="capability capability--feature">
+            <div class="capability__index">01</div>
+            <div class="capability__category">STRATEGY</div>
+            <h3 class="capability__title">채널 선택의 근거를 <em>데이터</em>로</h3>
+            <p class="capability__body">지역 기반 학원 사업의 특성을 분석하여 SNS·유튜브 대신 네이버 블로그 + 키워드 광고에 집중하는 채널 전략을 직접 수립했습니다. 오가닉 + 유료 광고가 같은 키워드에 동시 노출되는 구조를 설계해 노출 점유율을 극대화했습니다.</p>
+            <div class="capability__metric"><span>RESULT</span> 계열 평균 대비 +133% / +433%</div>
+          </article>
+
+          <article class="capability">
+            <div class="capability__index">02</div>
+            <div class="capability__category">CONTENT</div>
+            <h3 class="capability__title">콘텐츠 자산화</h3>
+            <p class="capability__body">SEO 분석부터 글 작성, 썸네일 디자인까지 직접 운영. 브랜딩 일관성을 동시에 관리했습니다.</p>
+            <div class="capability__metric"><span>SCALE</span> 1,143개 / 24,013 조회수</div>
+          </article>
+
+          <article class="capability">
+            <div class="capability__index">03</div>
+            <div class="capability__category">PERFORMANCE</div>
+            <h3 class="capability__title">광고 운영 · ROI</h3>
+            <p class="capability__body">월 10~30만원 예산을 직접 운영. 시즌별 동적 조정과 의도별 랜딩 분리로 전환을 최적화했습니다.</p>
+            <div class="capability__metric"><span>ROAS</span> 약 25x</div>
+          </article>
+
+          <article class="capability">
+            <div class="capability__index">04</div>
+            <div class="capability__category">SYSTEM</div>
+            <h3 class="capability__title">퍼널 · 트래커 직접 설계</h3>
+            <p class="capability__body">블로그 → 인포크링크 → 카카오 → 상담의 멀티스텝 퍼널과 자동 추적 트래커를 자체 제작했습니다.</p>
+            <div class="capability__metric"><span>CONVERSION</span> 블로그→인포크 10.1%</div>
+          </article>
+
+          <article class="capability">
+            <div class="capability__index">05</div>
+            <div class="capability__category">DECISION</div>
+            <h3 class="capability__title">위기 대응 & 의사결정</h3>
+            <p class="capability__body">알고리즘 변경에 1주 내 노출 회복. 사업 적합도 기준으로 채널을 손절하는 판단력을 보유했습니다.</p>
+            <div class="capability__metric"><span>CRISIS RECOVERY</span> 7 days</div>
+          </article>
+        </div>
+
+        <!-- Funnel -->
+        <div class="funnel" aria-label="마케팅 퍼널 4단계">
+          <div class="funnel__title">MARKETING FUNNEL</div>
+          <div class="funnel__flow">
+            <div class="funnel__step">
+              <div class="funnel__step-num">01</div>
+              <div class="funnel__step-name">네이버 블로그</div>
+              <div class="funnel__step-sub">AWARENESS</div>
+              <div class="funnel__step-metric">1,143개<span>· 24K 조회</span></div>
+            </div>
+            <div class="funnel__arrow" aria-hidden="true">→</div>
+            <div class="funnel__step">
+              <div class="funnel__step-num">02</div>
+              <div class="funnel__step-name">인포크링크</div>
+              <div class="funnel__step-sub">INTEREST</div>
+              <div class="funnel__step-metric">10.1%<span>· 블로그→인포크</span></div>
+            </div>
+            <div class="funnel__arrow" aria-hidden="true">→</div>
+            <div class="funnel__step">
+              <div class="funnel__step-num">03</div>
+              <div class="funnel__step-name">카카오채널</div>
+              <div class="funnel__step-sub">CONSIDERATION</div>
+              <div class="funnel__step-metric">상담 유도<span>· 자동 응대</span></div>
+            </div>
+            <div class="funnel__arrow" aria-hidden="true">→</div>
+            <div class="funnel__step funnel__step--accent">
+              <div class="funnel__step-num">04</div>
+              <div class="funnel__step-name">상담 요청</div>
+              <div class="funnel__step-sub">CONVERSION</div>
+              <div class="funnel__step-metric">38%<span>· 상담률</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Crisis Response -->
+    <section id="crisis" class="section">
+      <div class="container">
+        <header class="section__header">
+          <div class="section__number">03</div>
+          <h2 class="section__title">Crisis <em>Response</em></h2>
+          <p class="section__desc">데이터로 감지하고, 분석으로 판단하고, 1주일 만에 회복</p>
+          <p class="section__meta">CASE STUDY · 2025 H2</p>
+        </header>
+
+        <div class="case-study">
+          <div class="case-study__title">네이버 알고리즘 변경 대응</div>
+          <div class="timeline">
+
+            <div class="timeline__step">
+              <div class="timeline__label">SITUATION</div>
+              <div class="timeline__phase">상황 발생</div>
+              <h4 class="timeline__title">네이버 알고리즘 변경</h4>
+              <p class="timeline__body">발행량을 유지했음에도 조회수가 평균 1,000+ → 300~700대로 급감.</p>
+              <div class="timeline__metric timeline__metric--neg">-72% 조회수 감소</div>
+            </div>
+
+            <div class="timeline__connector" aria-hidden="true"></div>
+
+            <div class="timeline__step">
+              <div class="timeline__label">ANALYSIS</div>
+              <div class="timeline__phase">데이터 모니터링</div>
+              <h4 class="timeline__title">경쟁사 분석</h4>
+              <p class="timeline__body">키워드별 순위 모니터링으로 변화를 감지하고, 상위 글 분석 결과 "정보 전달형 → 경험 중심"으로 가중치 이동을 발견.</p>
+              <div class="timeline__metric">패턴 인사이트 도출</div>
+            </div>
+
+            <div class="timeline__connector" aria-hidden="true"></div>
+
+            <div class="timeline__step">
+              <div class="timeline__label">ACTION</div>
+              <div class="timeline__phase">즉시 전환</div>
+              <h4 class="timeline__title">콘텐츠 형식 재설계</h4>
+              <p class="timeline__body">본인 강점은 유지하면서 "경험을 통해 정보를 전달"하는 구조로 글 형식 재설계. 신규 글부터 즉시 적용.</p>
+              <div class="timeline__metric">발행량 감소 0건</div>
+            </div>
+
+            <div class="timeline__connector" aria-hidden="true"></div>
+
+            <div class="timeline__step timeline__step--result">
+              <div class="timeline__label">RESULT</div>
+              <div class="timeline__phase">회복</div>
+              <h4 class="timeline__title">1주일 내 노출 회복</h4>
+              <p class="timeline__body">발행량 감소 없이 형식 전환만으로 위기 극복.</p>
+              <div class="timeline__metric timeline__metric--pos">7 days to recovery</div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="competency-grid">
+          <div class="competency">
+            <div class="competency__num">01</div>
+            <div class="competency__title">데이터 기반 모니터링</div>
+            <p class="competency__body">키워드별 순위 변화를 실시간 추적해 알고리즘 변경을 가장 먼저 감지.</p>
+          </div>
+          <div class="competency">
+            <div class="competency__num">02</div>
+            <div class="competency__title">경쟁사 분석 능력</div>
+            <p class="competency__body">상위 노출 글의 패턴을 분석해 변화의 본질을 짚어냄.</p>
+          </div>
+          <div class="competency">
+            <div class="competency__num">03</div>
+            <div class="competency__title">본질을 짚는 인사이트</div>
+            <p class="competency__body">"정보 → 경험"이라는 추상화를 통해 실행 가능한 가이드라인 도출.</p>
+          </div>
+          <div class="competency">
+            <div class="competency__num">04</div>
+            <div class="competency__title">빠른 실행력</div>
+            <p class="competency__body">분석 즉시 신규 콘텐츠 형식에 적용. 7일 내 회복 달성.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Pipeline -->
+    <section id="ai-pipeline" class="section">
+      <div class="container">
+        <header class="section__header">
+          <div class="section__number">04</div>
+          <h2 class="section__title">AI <em>Pipeline</em></h2>
+          <p class="section__desc">멀티 모델로 설계한 콘텐츠 생산 자동화 시스템</p>
+          <p class="section__meta">DIFFERENTIATOR</p>
+        </header>
+
+        <p class="lede">
+          단순 'ChatGPT 사용 경험'이 아닌, <strong>Claude + Gemini를 결합한 End-to-End 파이프라인을 직접 설계</strong>하여 블로그 콘텐츠 생산을 자동화. 키워드 분석부터 본문, 썸네일 생성까지 전 과정을 시스템화한 사례입니다.
+        </p>
+
+        <!-- Pipeline -->
+        <div class="pipeline" aria-label="AI 콘텐츠 생산 파이프라인 4단계">
+          <div class="pipeline__step">
+            <div class="pipeline__num">01</div>
+            <div class="pipeline__model">Claude</div>
+            <div class="pipeline__name">KEYWORD SEO</div>
+            <p class="pipeline__desc">키워드 검색 의도 분석<br>경쟁 난이도 진단<br>전략 Path 3종 설계</p>
+          </div>
+          <div class="pipeline__arrow" aria-hidden="true">→</div>
+          <div class="pipeline__step">
+            <div class="pipeline__num">02</div>
+            <div class="pipeline__model">Claude</div>
+            <div class="pipeline__name">CONTENT BRIEF</div>
+            <p class="pipeline__desc">제목·CTA 설계<br>이미지 위치 명시<br>Writer's Brief 생성</p>
+          </div>
+          <div class="pipeline__arrow" aria-hidden="true">→</div>
+          <div class="pipeline__step">
+            <div class="pipeline__num">03</div>
+            <div class="pipeline__model">Claude</div>
+            <div class="pipeline__name">BODY WRITING</div>
+            <p class="pipeline__desc">수강생 1인칭 경험체<br>본문 자동 작성<br>3,000자 이상</p>
+          </div>
+          <div class="pipeline__arrow" aria-hidden="true">→</div>
+          <div class="pipeline__step pipeline__step--amber">
+            <div class="pipeline__num">04</div>
+            <div class="pipeline__model">Gemini</div>
+            <div class="pipeline__name">THUMBNAIL</div>
+            <p class="pipeline__desc">일관된 톤앤매너<br>썸네일 자동 생성<br>브랜딩 통일</p>
+          </div>
+        </div>
+
+        <!-- Before/After -->
+        <div class="ba-grid">
+          <article class="ba-card">
+            <div class="ba-card__label">PRODUCTIVITY GAIN</div>
+            <div class="ba-card__value" data-counter="7.5" data-suffix="x" data-decimals="1">0.0x</div>
+            <div class="ba-card__rows">
+              <div class="ba-row"><span class="ba-row__k">BEFORE</span><span class="ba-row__v">1.2 posts/hour</span></div>
+              <div class="ba-row"><span class="ba-row__k">AFTER</span><span class="ba-row__v ba-row__v--strong">9 posts/hour</span></div>
+            </div>
+          </article>
+
+          <article class="ba-card">
+            <div class="ba-card__label">TIME SAVED</div>
+            <div class="ba-card__value" data-counter="87" data-suffix="%">0%</div>
+            <div class="ba-card__rows">
+              <div class="ba-row"><span class="ba-row__k">BEFORE</span><span class="ba-row__v">50 min/post</span></div>
+              <div class="ba-row"><span class="ba-row__k">AFTER</span><span class="ba-row__v ba-row__v--strong">6.7 min/post</span></div>
+            </div>
+          </article>
+
+          <article class="ba-card">
+            <div class="ba-card__label">QUALITY (TOP RANK)</div>
+            <div class="ba-card__value" data-counter="80" data-suffix="%">0%</div>
+            <div class="ba-card__rows">
+              <div class="ba-row"><span class="ba-row__k">BEFORE</span><span class="ba-row__v">보증 불가</span></div>
+              <div class="ba-row"><span class="ba-row__k">AFTER</span><span class="ba-row__v ba-row__v--strong">10중 8건 상위</span></div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Differentiators -->
+        <div class="diff-grid">
+          <div class="diff">
+            <div class="diff__num">01</div>
+            <div class="diff__title">멀티 모델 활용</div>
+            <p class="diff__body">글은 Claude, 이미지는 Gemini. 각 모델의 강점을 알고 적재적소에 배치 — 단순 ChatGPT 사용자와 명확한 차별화.</p>
+          </div>
+          <div class="diff">
+            <div class="diff__num">02</div>
+            <div class="diff__title">프롬프트 엔지니어링</div>
+            <p class="diff__body">출력 양식·분량·금지어·톤앤매너까지 명시한 3단계 프롬프트 체인을 직접 설계.</p>
+          </div>
+          <div class="diff">
+            <div class="diff__num">03</div>
+            <div class="diff__title">측정 가능한 ROI</div>
+            <p class="diff__body">1,143개 콘텐츠에 적용한 실전 데이터로 효율과 품질을 동시에 증명.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="container">
+        <header class="section__header">
+          <div class="section__number">05</div>
+          <h2 class="section__title">Let's <em>Talk</em></h2>
+          <p class="section__desc">더 큰 무대에서 검증된 마케팅 방법론을 확장하고 싶습니다</p>
+        </header>
+
+        <div class="contact-grid">
+          <a class="contact-card" href="mailto:dbfrhr20@naver.com">
+            <div class="contact-card__label">EMAIL</div>
+            <div class="contact-card__value">dbfrhr20@naver.com</div>
+          </a>
+          <a class="contact-card" href="tel:01055489567">
+            <div class="contact-card__label">PHONE</div>
+            <div class="contact-card__value">010-5548-9567</div>
+          </a>
+          <div class="contact-card">
+            <div class="contact-card__label">LOCATION</div>
+            <div class="contact-card__value">경기도 수원시</div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-card__label">LANGUAGES</div>
+            <div class="contact-card__value">KR · JP <span>(JLPT N1)</span></div>
+          </div>
+        </div>
+
+        <blockquote class="closing">
+          "전략을 세우고, 시스템으로 만들고,<br><em>데이터로 증명하는</em> 마케터"
+        </blockquote>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>© 2026 YULGOK.LEE · MARKETING PORTFOLIO</div>
+      <div>BUILT WITH D3.JS · LAST UPDATED 2026.05</div>
+    </div>
+  </footer>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
