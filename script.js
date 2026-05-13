@@ -1,21 +1,23 @@
 /* ============================================================
-   이율곡 Marketing Portfolio
+   이율곡 Marketing Portfolio — v2
+   - 26-month dataset (2024.03 ~ 2026.04)
    - D3 v7 charts (inquiry / comparison / blog)
-   - Counter animation
+   - Counter animation with viewport-immediate trigger
    - Navigation active state
-   - Scroll-triggered rendering
-   - Responsive re-render
+   - Scroll-triggered chart rendering (viewport-immediate)
+   - Responsive re-render with debounce
    ============================================================ */
 
 /* -------- Data (do not modify) -------- */
 const months = [
-  '24.02','24.03','24.04','24.05','24.06','24.07','24.08','24.09','24.10','24.11','24.12','25.01','25.02',
-  '25.03','25.04','25.05','25.06','25.07','25.08','25.09','25.10','25.11','25.12','26.01','26.02','26.03','26.04'
+  '24.03','24.04','24.05','24.06','24.07','24.08','24.09','24.10','24.11','24.12',
+  '25.01','25.02','25.03','25.04','25.05','25.06','25.07','25.08','25.09','25.10',
+  '25.11','25.12','26.01','26.02','26.03','26.04'
 ];
 
-const inquiryData   = [2,3,9,4,9,10,4,3,13,15,24,18,7,23,18,7,17,28,18,20,9,16,18,14,10,10,5];
-const peerData      = [4,4,4,4,4,4,4,4,4,4,4,4,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3];
-const viewsData     = [null,null,467,988,637,880,719,988,1767,2261,1764,1386,1223,1034,1067,845,1117,1110,1093,813,627,695,694,329,397,505,607];
+const inquiryData = [3,9,4,9,10,4,3,13,15,24,18,7,23,18,7,17,28,18,20,9,16,18,14,10,10,5];
+const peerData    = [4,4,4,4,4,4,4,4,4,4,4,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3];
+const viewsData   = [null,467,988,637,880,719,988,1767,2261,1764,1386,1223,1034,1067,845,1117,1110,1093,813,627,695,694,329,397,505,607];
 
 const comparisonData = [
   { name: '개인문의 월평균', unit: '건',   y1: 9.3,   y2: 16,    growth: '+72%' },
@@ -23,6 +25,11 @@ const comparisonData = [
   { name: '등록단가',      unit: '만원', y1: 53.2,  y2: 92.8,  growth: '+74%' },
   { name: '상담률',        unit: '%',   y1: 29,    y2: 38,    growth: '+9%p' }
 ];
+
+/* Year divider sits between index 11 (25.02) and 12 (25.03), matching the
+   peer-average transition from 4 → 3. */
+const YEAR_DIVIDER_LEFT_IDX = 11;
+const YEAR_DIVIDER_RIGHT_IDX = 12;
 
 /* -------- Tooltip helper -------- */
 let tooltipEl;
@@ -76,8 +83,7 @@ function animateCounter(el) {
 
   function step(now) {
     const t = Math.min((now - start) / duration, 1);
-    // ease-out cubic
-    const eased = 1 - Math.pow(1 - t, 3);
+    const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
     const value = target * eased;
     let formatted;
     if (decimals > 0) {
@@ -93,8 +99,15 @@ function animateCounter(el) {
   requestAnimationFrame(step);
 }
 
-function setupCounters() {
-  const counters = document.querySelectorAll('[data-counter]');
+function isInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  return rect.top < window.innerHeight && rect.bottom > 0;
+}
+
+function initCounters() {
+  const counters = Array.from(document.querySelectorAll('[data-counter]'));
+  if (counters.length === 0) return;
+
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -102,8 +115,22 @@ function setupCounters() {
         io.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.4 });
-  counters.forEach((el) => io.observe(el));
+  }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+
+  counters.forEach((el) => {
+    if (isInViewport(el)) {
+      animateCounter(el);
+    } else {
+      io.observe(el);
+    }
+  });
+
+  // Safety net — re-check any counters that somehow stayed at 0 after a beat.
+  setTimeout(() => {
+    counters.forEach((el) => {
+      if (el.dataset.done !== '1' && isInViewport(el)) animateCounter(el);
+    });
+  }, 500);
 }
 
 /* -------- Navigation active state -------- */
@@ -129,6 +156,10 @@ function setupNavObserver() {
 function setupFunnelReveal() {
   const funnel = document.querySelector('.funnel');
   if (!funnel) return;
+  if (isInViewport(funnel)) {
+    funnel.classList.add('is-visible');
+    return;
+  }
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -141,7 +172,7 @@ function setupFunnelReveal() {
 }
 
 /* ============================================================
-   Chart 1 — 개인문의 추이 vs 계열 평균
+   Chart 1 — 개인문의 추이 vs 전국 사업부 평균
    ============================================================ */
 function renderInquiryChart() {
   const container = document.getElementById('chart-inquiry');
@@ -186,8 +217,8 @@ function renderInquiryChart() {
     .attr('class', 'axis')
     .call(d3.axisLeft(y).ticks(4).tickFormat(d => d + '건'));
 
-  /* Year divider (between 25.02 and 25.03 — indices 12 and 13) */
-  const dividerX = (x('25.02') + x('25.03')) / 2;
+  /* Year divider — between 25.02 (idx 11) and 25.03 (idx 12) */
+  const dividerX = (x(months[YEAR_DIVIDER_LEFT_IDX]) + x(months[YEAR_DIVIDER_RIGHT_IDX])) / 2;
   g.append('line')
     .attr('class', 'year-divider')
     .attr('x1', dividerX).attr('x2', dividerX)
@@ -238,11 +269,12 @@ function renderInquiryChart() {
     .attr('cy', d => y(d))
     .attr('r', 0);
 
-  /* Peak labels */
+  /* Peak labels (월 → 인덱스) */
   const peaks = [
-    { label: '24.12', value: 24, idx: 10 },
-    { label: '25.07', value: 28, idx: 17 }
-  ];
+    { label: '24.12', value: 24 },
+    { label: '25.07', value: 28 }
+  ].map(p => ({ ...p, idx: months.indexOf(p.label) }));
+
   const peakG = g.append('g').attr('class', 'peaks').attr('opacity', 0);
   peaks.forEach(p => {
     peakG.append('text')
@@ -266,7 +298,6 @@ function renderInquiryChart() {
       peakG.transition().duration(400).attr('opacity', 1);
     });
 
-  const peerLength = peerPath.node().getTotalLength();
   peerPath
     .attr('stroke-dasharray', `4 4`)
     .attr('opacity', 0)
@@ -290,7 +321,7 @@ function renderInquiryChart() {
       const html = `
         <div class="tooltip__title">${months[i]}</div>
         <div class="tooltip__row"><span>본인 문의</span><span>${d}건</span></div>
-        <div class="tooltip__row"><span>계열 평균</span><span>${peer}건</span></div>
+        <div class="tooltip__row"><span>전국 사업부 평균</span><span>${peer}건</span></div>
         <div class="tooltip__row tooltip__row--accent"><span>상회율</span><span>${diff >= 0 ? '+' : ''}${diff}%</span></div>
       `;
       showTooltip(html, event);
@@ -302,14 +333,14 @@ function renderInquiryChart() {
     });
 
   /* Legend */
-  const legend = g.append('g').attr('transform', `translate(${innerW - 200}, 0)`);
+  const legend = g.append('g').attr('transform', `translate(${innerW - 220}, 0)`);
   legend.append('line').attr('x1', 0).attr('x2', 18).attr('y1', 6).attr('y2', 6)
     .attr('stroke', 'var(--accent)').attr('stroke-width', 2);
   legend.append('text').attr('x', 24).attr('y', 10).attr('class', 'legend-text').text('개인문의');
 
   legend.append('line').attr('x1', 100).attr('x2', 118).attr('y1', 6).attr('y2', 6)
     .attr('stroke', 'var(--text-faint)').attr('stroke-width', 1.5).attr('stroke-dasharray', '4 4');
-  legend.append('text').attr('x', 124).attr('y', 10).attr('class', 'legend-text').text('계열평균');
+  legend.append('text').attr('x', 124).attr('y', 10).attr('class', 'legend-text').text('전국 사업부 평균');
 }
 
 /* ============================================================
@@ -332,7 +363,6 @@ function renderComparisonChart() {
 
   const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
-  /* Each row is normalized: y2 = 100% */
   const data = comparisonData.map(d => ({
     ...d,
     y1Pct: d.y1 / d.y2 * 100,
@@ -353,25 +383,21 @@ function renderComparisonChart() {
     .domain([0, 110])
     .range([0, innerW]);
 
-  /* Y axis (categories) */
   g.append('g')
     .attr('class', 'axis')
     .call(d3.axisLeft(y0).tickSize(0).tickPadding(10));
 
-  /* Grid lines */
   g.append('g')
     .attr('class', 'grid')
     .attr('transform', `translate(0,${innerH})`)
     .call(d3.axisBottom(x).ticks(4).tickSize(-innerH).tickFormat(''));
 
-  /* Group per metric */
   const rows = g.selectAll('.row')
     .data(data)
     .enter()
     .append('g')
     .attr('transform', d => `translate(0,${y0(d.name)})`);
 
-  /* 1년차 bar */
   rows.append('rect')
     .attr('class', 'bar-y1')
     .attr('x', 0)
@@ -384,7 +410,6 @@ function renderComparisonChart() {
     .ease(d3.easeCubicOut)
     .attr('width', d => x(d.y1Pct));
 
-  /* 2년차 bar */
   rows.append('rect')
     .attr('class', 'bar-y2')
     .attr('x', 0)
@@ -397,7 +422,6 @@ function renderComparisonChart() {
     .ease(d3.easeCubicOut)
     .attr('width', d => x(d.y2Pct));
 
-  /* Value labels — 1년차 */
   rows.append('text')
     .attr('class', 'bar-label')
     .attr('x', d => x(d.y1Pct) + 8)
@@ -409,7 +433,6 @@ function renderComparisonChart() {
     .delay((d, i) => 900 + i * 90)
     .attr('opacity', 1);
 
-  /* Value labels — 2년차 */
   rows.append('text')
     .attr('class', 'bar-label')
     .attr('x', d => x(d.y2Pct) + 8)
@@ -421,7 +444,6 @@ function renderComparisonChart() {
     .delay((d, i) => 1100 + i * 90)
     .attr('opacity', 1);
 
-  /* Growth label on right */
   rows.append('text')
     .attr('class', 'bar-growth')
     .attr('x', innerW + 10)
@@ -433,14 +455,12 @@ function renderComparisonChart() {
     .delay((d, i) => 1300 + i * 90)
     .attr('opacity', 1);
 
-  /* Legend */
   const legend = svg.append('g').attr('transform', `translate(${margin.left},${height - 16})`);
   legend.append('rect').attr('width', 12).attr('height', 12).attr('class', 'bar-y1');
   legend.append('text').attr('x', 18).attr('y', 10).attr('class', 'legend-text').text('1년차');
   legend.append('rect').attr('x', 80).attr('width', 12).attr('height', 12).attr('class', 'bar-y2');
   legend.append('text').attr('x', 98).attr('y', 10).attr('class', 'legend-text').text('2년차');
 
-  /* Hover */
   rows.on('mouseenter', function (event, d) {
     const html = `
       <div class="tooltip__title">${d.name}</div>
@@ -489,32 +509,27 @@ function renderBlogChart() {
     .range([innerH, 0])
     .nice();
 
-  /* Grid */
   g.append('g')
     .attr('class', 'grid')
     .call(d3.axisLeft(yViews).ticks(4).tickSize(-innerW).tickFormat(''));
 
-  /* X axis */
   const xTicks = months.filter((_, i) => i % 4 === 0);
   g.append('g')
     .attr('class', 'axis')
     .attr('transform', `translate(0,${innerH})`)
     .call(d3.axisBottom(x).tickValues(xTicks).tickSize(4));
 
-  /* Y axis left — views (amber) */
   const yAxisLeft = g.append('g')
     .attr('class', 'axis')
     .call(d3.axisLeft(yViews).ticks(4).tickFormat(d => d >= 1000 ? (d/1000) + 'K' : d));
   yAxisLeft.selectAll('text').attr('fill', 'var(--amber)');
 
-  /* Y axis right — inquiries (accent) */
   const yAxisRight = g.append('g')
     .attr('class', 'axis')
     .attr('transform', `translate(${innerW},0)`)
     .call(d3.axisRight(yInq).ticks(4).tickFormat(d => d + '건'));
   yAxisRight.selectAll('text').attr('fill', 'var(--accent)');
 
-  /* Bars (views) */
   const viewData = viewsData.map((v, i) => ({ month: months[i], value: v, inq: inquiryData[i] }))
     .filter(d => d.value != null);
 
@@ -534,7 +549,6 @@ function renderBlogChart() {
     .attr('y', d => yViews(d.value))
     .attr('height', d => innerH - yViews(d.value));
 
-  /* Line (inquiries) */
   const line = d3.line()
     .x((d, i) => x(months[i]) + x.bandwidth() / 2)
     .y(d => yInq(d))
@@ -555,7 +569,6 @@ function renderBlogChart() {
     .ease(d3.easeCubicOut)
     .attr('stroke-dashoffset', 0);
 
-  /* Dots */
   g.selectAll('.dot-blog-inquiry')
     .data(inquiryData)
     .enter()
@@ -569,7 +582,6 @@ function renderBlogChart() {
     .delay((d, i) => 600 + i * 25)
     .attr('r', 3);
 
-  /* Hover overlay (column-wise) */
   g.selectAll('.hover-col')
     .data(months)
     .enter()
@@ -595,7 +607,6 @@ function renderBlogChart() {
     .on('mousemove', moveTooltip)
     .on('mouseleave', hideTooltip);
 
-  /* Legend */
   const legend = g.append('g').attr('transform', `translate(${innerW - 180}, -8)`);
   legend.append('rect').attr('width', 12).attr('height', 12).attr('class', 'bar-views');
   legend.append('text').attr('x', 18).attr('y', 10).attr('class', 'legend-text').text('조회수');
@@ -605,10 +616,10 @@ function renderBlogChart() {
 }
 
 /* ============================================================
-   Scroll-triggered chart rendering
+   Scroll-triggered chart rendering (with immediate-viewport check)
    ============================================================ */
 const chartConfigs = [
-  { id: 'chart-inquiry',   render: renderInquiryChart },
+  { id: 'chart-inquiry',    render: renderInquiryChart },
   { id: 'chart-comparison', render: renderComparisonChart },
   { id: 'chart-blog',       render: renderBlogChart }
 ];
@@ -619,6 +630,13 @@ function setupChartObservers() {
   chartConfigs.forEach(({ id, render }) => {
     const el = document.getElementById(id);
     if (!el) return;
+
+    if (isInViewport(el)) {
+      render();
+      renderedCharts.add(id);
+      return;
+    }
+
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -627,9 +645,22 @@ function setupChartObservers() {
           io.disconnect();
         }
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
+
     io.observe(el);
   });
+
+  // Safety net for late-loading charts
+  setTimeout(() => {
+    chartConfigs.forEach(({ id, render }) => {
+      if (renderedCharts.has(id)) return;
+      const el = document.getElementById(id);
+      if (el && isInViewport(el)) {
+        render();
+        renderedCharts.add(id);
+      }
+    });
+  }, 600);
 }
 
 /* -------- Resize handler -------- */
@@ -647,7 +678,7 @@ function handleResize() {
    Init
    ============================================================ */
 function init() {
-  setupCounters();
+  initCounters();
   setupNavObserver();
   setupFunnelReveal();
   setupChartObservers();
