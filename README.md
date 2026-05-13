@@ -146,12 +146,12 @@ URL 접속하여 사이트가 정상 작동하는지 확인.
 
 | 섹션 | 내용 |
 |------|------|
-| **01. Overview** | 핵심 KPI 4개 + 한 줄 소개 |
-| **02. Performance** | 개인문의 추이 차트 + 1·2년차 비교 + 블로그 분석 + KPI Strip |
-| **03. Strategy** | 5가지 핵심 역량 + 마케팅 퍼널 |
-| **04. Crisis Response** | 네이버 알고리즘 변경 대응 케이스 스터디 |
-| **05. AI Pipeline** | 4단계 멀티 모델 워크플로우 + 성과 |
-| **06. Contact** | 연락처 |
+| **01. About Me** | 프로필 + 독특한 역량 조합 (개발·일본어·마케팅·AI) |
+| **02. Performance** | 개인문의 추이 + 1·2년차 비교 + 블로그 분석 + KPI Strip + 지역 듀얼 채널 전략 |
+| **03. Strategy** | 운영 구조 컨텍스트 + 5가지 핵심 역량 + 마케팅 퍼널 |
+| **04. Crisis Response & Decision** | 네이버 알고리즘 변경 대응 + 카카오 비즈니스 채널 손절 |
+| **05. AI Pipeline** | 4단계 멀티 모델 워크플로우 + 산출물 블로그 링크 |
+| **06. Contact** | 연락처 + 노션 이력서 링크 + Looking For 박스 |
 
 ---
 
@@ -159,7 +159,7 @@ URL 접속하여 사이트가 정상 작동하는지 확인.
 
 ### 데이터 업데이트
 
-`script.js` 상단의 `inquiryData`, `peerData`, `viewsData`, `comparisonData` 변수를 수정하세요.
+`script.js` 상단의 `months`, `inquiryData`, `peerData`, `viewsData`, `comparisonData` 변수를 수정하세요. 26개월 데이터셋(2024.03 ~ 2026.04) 기준으로 정렬되어 있습니다.
 
 ### 색상 변경
 
