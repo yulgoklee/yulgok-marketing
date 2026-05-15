@@ -251,10 +251,10 @@ em { font-style: normal; }
   font-weight: 600;
 }
 
-/* KPI Grid */
+/* KPI Grid — 6 cards in 3×2 layout */
 .kpi-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-bottom: 64px;
 }
@@ -1752,6 +1752,376 @@ a.contact-card:hover {
 }
 
 /* ============================================================
+   Quality over Quantity
+   ============================================================ */
+.qg-section {
+  margin-top: 56px;
+}
+
+.qg-header {
+  margin-bottom: 28px;
+}
+
+.qg-tag,
+.retention-section__tag,
+.lag-section__tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.qg-title,
+.retention-section__title,
+.lag-section__title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.qg-title em,
+.retention-section__title em,
+.lag-section__title em {
+  background: linear-gradient(135deg, var(--accent) 0%, #5EEAC5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.qg-desc,
+.retention-section__desc,
+.lag-section__desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-mid);
+  max-width: 760px;
+}
+
+.qg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 28px 0 24px;
+}
+
+.qg-card {
+  position: relative;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  overflow: hidden;
+  transition: border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+
+.qg-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.qg-card--highlight {
+  background: linear-gradient(135deg, var(--bg-elev-1) 0%, rgba(0, 217, 163, 0.06) 100%);
+  border-color: var(--accent-line);
+}
+
+.qg-card__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin-bottom: 22px;
+}
+
+.qg-card--highlight .qg-card__label { color: var(--accent); }
+
+.qg-card__flow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: var(--font-display);
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.qg-card__from {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-dim);
+  text-decoration: line-through;
+  text-decoration-color: var(--text-faint);
+}
+
+.qg-card__arrow {
+  color: var(--text-faint);
+  font-size: 16px;
+  font-family: var(--font-mono);
+}
+
+.qg-card__to {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.qg-card__result {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.qg-card__note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+}
+
+/* ============================================================
+   Retention Marketing
+   ============================================================ */
+.retention-section {
+  margin-top: 56px;
+}
+
+.retention-section__header {
+  margin-bottom: 28px;
+}
+
+.retention-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 32px;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+}
+
+.retention-stage {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  grid-template-rows: auto auto;
+  gap: 4px 24px;
+  align-items: center;
+}
+
+.retention-stage__year {
+  grid-row: 1 / 3;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.retention-stage--highlight .retention-stage__year { color: var(--accent); }
+
+.retention-stage__year span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+.retention-stage__bar-wrap {
+  position: relative;
+  height: 22px;
+  background: var(--bg-elev-2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.retention-stage__bar {
+  position: relative;
+  height: 100%;
+  width: var(--w, 0%);
+  background: linear-gradient(90deg, var(--text-faint) 0%, var(--text-mid) 100%);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  transition: width 1.2s var(--ease-out);
+}
+
+.retention-stage__bar--highlight {
+  background: linear-gradient(90deg, var(--accent) 0%, #5EEAC5 100%);
+}
+
+.retention-stage__bar-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--bg);
+}
+
+.retention-stage__amount {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   Lag Effect
+   ============================================================ */
+.lag-section {
+  margin-top: 56px;
+}
+
+.lag-section__header {
+  margin-bottom: 28px;
+}
+
+.lag-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.lag-stat {
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 22px;
+  text-align: left;
+  transition: border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+
+.lag-stat--highlight {
+  background: linear-gradient(135deg, var(--bg-elev-1) 0%, rgba(0, 217, 163, 0.06) 100%);
+  border-color: var(--accent-line);
+}
+
+.lag-stat__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin-bottom: 14px;
+}
+
+.lag-stat--highlight .lag-stat__label { color: var(--accent); }
+
+.lag-stat__value {
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.lag-stat--highlight .lag-stat__value { color: var(--accent); }
+
+.lag-stat__bar {
+  height: 6px;
+  background: var(--bg-elev-2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.lag-stat__bar-fill {
+  height: 100%;
+  width: var(--w, 0%);
+  background: var(--text-faint);
+  border-radius: 3px;
+  transition: width 1.2s var(--ease-out);
+}
+
+.lag-stat--highlight .lag-stat__bar-fill {
+  background: var(--accent);
+}
+
+/* ============================================================
+   Funnel resilience (Crisis case 1)
+   ============================================================ */
+.resilience {
+  margin-top: 24px;
+  padding: 20px 22px;
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius-sm);
+}
+
+.resilience__label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.resilience__stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.resilience__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.resilience__value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1;
+}
+
+.resilience__value--neg { color: var(--neg); }
+.resilience__stat--highlight .resilience__value { color: var(--accent); }
+
+.resilience__caption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+}
+
+.resilience__arrow {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--text-faint);
+}
+
+.resilience__note {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-mid);
+}
+
+/* ============================================================
    Section title — secondary em (Crisis "& Decision")
    ============================================================ */
 .section__title em {
@@ -1821,6 +2191,12 @@ a.contact-card:hover {
   /* Crisis */
   .case-grid { grid-template-columns: 1fr; }
   .competency__grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* v3 components */
+  .qg-grid { grid-template-columns: 1fr; }
+  .lag-grid { grid-template-columns: repeat(2, 1fr); }
+  .retention-stage { grid-template-columns: 72px 1fr; gap: 4px 16px; }
+  .retention-stage__year { font-size: 20px; }
 }
 
 @media (max-width: 768px) {
@@ -1873,6 +2249,28 @@ a.contact-card:hover {
   .case-study__result { font-size: 28px; }
 
   .ai-output { padding: 24px; }
+
+  /* v3 components — mobile */
+  .lag-grid { grid-template-columns: 1fr 1fr; }
+  .lag-stat { padding: 18px 16px; }
+  .lag-stat__value { font-size: 30px; }
+
+  .retention-flow { padding: 22px 18px; }
+  .retention-stage {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 8px;
+  }
+  .retention-stage__year { grid-row: auto; font-size: 18px; }
+  .retention-stage__amount { font-size: 11.5px; }
+
+  .qg-card { padding: 22px 20px; }
+  .qg-card__result { font-size: 36px; }
+  .qg-card__to { font-size: 20px; }
+
+  .resilience__stats { gap: 12px; }
+  .resilience__value { font-size: 24px; }
+  .resilience__arrow { display: none; }
 
   .nav__status-text { display: none; }
   .footer__inner { flex-direction: column; gap: 8px; text-align: center; }
