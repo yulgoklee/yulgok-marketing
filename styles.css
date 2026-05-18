@@ -2134,12 +2134,216 @@ a.contact-card:hover {
 }
 
 /* ============================================================
+   Hero KPI — 3-card variant
+   ============================================================ */
+.kpi-grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 960px;
+}
+
+/* ============================================================
+   About Context Box
+   ============================================================ */
+.about-context {
+  margin-top: 48px;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 22px 26px;
+}
+
+.about-context__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.about-context__text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-mid);
+}
+
+.about-context__text strong { color: var(--text); font-weight: 600; }
+
+/* ============================================================
+   Hypothesis Section
+   ============================================================ */
+.hypothesis-box {
+  background: linear-gradient(135deg, var(--bg-elev-1) 0%, rgba(0, 217, 163, 0.04) 100%);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius);
+  padding: 36px;
+  margin-bottom: 40px;
+}
+
+.hyp-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+
+.hyp-text {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.hyp-text strong { font-weight: 600; }
+
+.hyp-context {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-mid);
+}
+
+/* ============================================================
+   Experiment Grid
+   ============================================================ */
+.experiment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+.exp-card {
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+
+.exp-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.exp-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--text-faint);
+  margin-bottom: 12px;
+}
+
+.exp-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.exp-action {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-mid);
+  margin-bottom: 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.exp-scale {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.exp-scale-value {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+   Result Block (03 성과와 인사이트 하위 블록)
+   ============================================================ */
+.result-block {
+  margin-bottom: 72px;
+  padding-bottom: 72px;
+  border-bottom: 1px solid var(--border);
+}
+
+.result-block:last-of-type {
+  border-bottom: 0;
+  margin-bottom: 48px;
+  padding-bottom: 0;
+}
+
+.block-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.block-title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 28px;
+}
+
+.block-title em {
+  background: linear-gradient(135deg, var(--accent) 0%, #5EEAC5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.block-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-mid);
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+
+/* ============================================================
+   AI Pipeline Block (04 시스템과 도구 내부)
+   ============================================================ */
+.ai-pipeline-block {
+  margin-top: 72px;
+  padding-top: 64px;
+  border-top: 1px solid var(--border);
+}
+
+.ai-pipeline-block .lede {
+  margin-bottom: 48px;
+}
+
+/* ============================================================
    Responsive
    ============================================================ */
 @media (max-width: 1100px) {
   .nav__menu { display: none; }
   .container { padding: 0 24px; }
   .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .kpi-grid--3 { grid-template-columns: repeat(3, 1fr); max-width: 100%; }
+  .experiment-grid { grid-template-columns: 1fr; }
   .kpi-strip { grid-template-columns: repeat(2, 1fr); }
   .kpi-strip__item {
     border-right: 1px solid var(--border);
@@ -2223,6 +2427,16 @@ a.contact-card:hover {
     margin-bottom: 32px;
   }
   .kpi-grid { grid-template-columns: 1fr; gap: 12px; margin-bottom: 32px; }
+  .kpi-grid--3 { grid-template-columns: 1fr; }
+
+  .hypothesis-box { padding: 24px 20px; }
+  .hyp-text { font-size: 15px; }
+  .experiment-grid { grid-template-columns: 1fr; }
+
+  .result-block { margin-bottom: 48px; padding-bottom: 48px; }
+  .block-title { font-size: clamp(20px, 6vw, 28px); margin-bottom: 20px; }
+
+  .ai-pipeline-block { margin-top: 48px; padding-top: 48px; }
   .kpi-card { padding: 22px 20px; }
   .kpi-card__value { font-size: 32px; }
   .hero__scroll { margin-top: 20px; }
