@@ -2660,3 +2660,9 @@ a.contact-card:hover {
   letter-spacing: 0.02em;
   color: var(--text-dim);
 }
+
+.contact-cue {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: var(--text-dim);
+}
