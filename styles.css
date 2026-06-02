@@ -2667,3 +2667,711 @@ a.contact-card:hover {
   font-size: 14px;
   color: var(--text-dim);
 }
+
+/* ============================================================
+   TIER 3 — SLIDE DECK SYSTEM
+   Desktop ≥ 1024px: horizontal slide navigation
+   Mobile  < 1024px: vertical scroll fallback
+   ============================================================ */
+
+/* Desktop: lock body scroll — deck handles all navigation */
+@media (min-width: 1024px) {
+  html, body { overflow: hidden; height: 100%; }
+}
+
+/* Deck wrapper clips overflow */
+.deck-wrap {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Horizontal strip: 10 slides side by side */
+.deck {
+  display: flex;
+  flex-direction: row;
+  width: calc(10 * 100vw);
+  height: 100vh;
+  transform: translateX(0);
+  transition: transform 0.65s var(--ease-out);
+  will-change: transform;
+}
+
+/* Each slide: full viewport */
+.slide {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Slide inner: centred content column */
+.slide__inner {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 70px 7vw 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.slide__inner--chart {
+  padding-top: 60px;
+  padding-bottom: 52px;
+}
+
+.slide__inner--center {
+  align-items: center;
+  text-align: center;
+}
+
+.slide__inner--funnel {
+  align-items: center;
+}
+
+/* ---- Bottom nav bar ---- */
+.deck-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 50px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: rgba(10, 14, 20, 0.82);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  border-top: 1px solid var(--border);
+}
+
+.deck-arrow {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1;
+  padding: 6px 16px;
+  cursor: pointer;
+  transition: color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+}
+.deck-arrow:hover:not(:disabled) { color: var(--text); border-color: var(--border-strong); }
+.deck-arrow:disabled { opacity: 0.22; cursor: not-allowed; }
+
+.deck-dots { display: flex; align-items: center; gap: 8px; }
+
+.deck-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--text-faint);
+  border: none; padding: 0;
+  cursor: pointer;
+  transition: background 0.25s var(--ease-out), transform 0.25s var(--ease-out), box-shadow 0.25s;
+}
+.deck-dot.is-active {
+  background: var(--accent);
+  transform: scale(1.35);
+  box-shadow: 0 0 8px rgba(0, 217, 163, 0.45);
+}
+.deck-dot:hover:not(.is-active) { background: var(--text-dim); }
+
+/* ---- Shared slide typography ---- */
+.slide-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+
+.slide-title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 42px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+
+.slide-title em {
+  background: linear-gradient(135deg, var(--accent) 0%, #5EEAC5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.slide-desc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-mid);
+  max-width: 760px;
+  margin-bottom: 24px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   Slide ① — Cover
+   ============================================================ */
+.slide--cover .slide__inner {
+  max-width: 900px;
+  padding-left: 8vw;
+  justify-content: center;
+}
+
+.s-cover__title {
+  font-family: var(--font-display);
+  font-size: clamp(50px, 8vw, 108px);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 32px;
+  flex-shrink: 0;
+}
+
+.s-cover__title em {
+  background: linear-gradient(135deg, var(--accent) 0%, #5EEAC5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.s-cover__lede {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-mid);
+  max-width: 640px;
+  margin-bottom: 36px;
+  flex-shrink: 0;
+}
+.s-cover__lede strong { color: var(--text); font-weight: 600; }
+
+.s-cover__proof {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 600px;
+  padding: 20px 24px;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius);
+  margin-bottom: 28px;
+  flex-shrink: 0;
+}
+
+.s-cover__stat {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 52px);
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.s-cover__proof-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-mid);
+}
+.s-cover__proof-text strong { color: var(--text); font-weight: 600; }
+
+.s-cover__hint {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  flex-shrink: 0;
+}
+
+.s-cover__glow {
+  position: absolute;
+  top: -20%; right: -8%;
+  width: 60vw; height: 80vh;
+  background: radial-gradient(ellipse at 60% 40%, rgba(0, 217, 163, 0.07) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ============================================================
+   Slide ② — Snapshot
+   ============================================================ */
+.s-snap {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+  align-items: center;
+  flex: 1;
+  min-height: 0;
+}
+
+.s-snap__right {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 3-column KPI row */
+.s-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+}
+
+.s-kpi {
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 18px;
+  transition: border-color 0.3s var(--ease-out);
+}
+
+.s-kpi--accent {
+  border-color: var(--accent-line);
+  background: linear-gradient(135deg, var(--bg-elev-1), var(--accent-soft));
+}
+
+.s-kpi__value {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.s-kpi__label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin-bottom: 5px;
+}
+
+.s-kpi__sub { font-size: 11px; color: var(--text-dim); line-height: 1.4; }
+
+/* Competency chips */
+.s-comp-chips { display: flex; flex-wrap: wrap; gap: 8px; flex-shrink: 0; }
+
+.s-comp-chip {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-mid);
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.s-comp-chip:hover { border-color: var(--accent-line); color: var(--accent); }
+
+/* ============================================================
+   Slide ③ — Loop
+   ============================================================ */
+.slide--loop .slide__inner { max-width: 100%; padding-left: 4vw; padding-right: 4vw; }
+.slide--loop .pipeline.loop-stages { margin-top: 4px; margin-bottom: 0; flex-shrink: 0; }
+
+/* ============================================================
+   Slide ④ — Funnel (vertical)
+   ============================================================ */
+.v-funnel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 660px;
+  flex-shrink: 0;
+}
+
+.v-funnel__step { width: var(--fw, 100%); }
+
+.v-funnel__bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 13px 18px;
+  transition: border-color 0.3s;
+}
+
+.v-funnel__step--accent .v-funnel__bar {
+  border-color: var(--accent-line);
+  background: linear-gradient(135deg, var(--bg-elev-1), var(--accent-soft));
+}
+
+.v-funnel__num {
+  font-family: var(--font-mono);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-faint); flex-shrink: 0;
+}
+
+.v-funnel__name {
+  font-family: var(--font-display);
+  font-size: 15px; font-weight: 600;
+  color: var(--text); flex: 1;
+}
+
+.v-funnel__tag {
+  font-family: var(--font-mono);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  background: var(--bg-elev-3);
+  border-radius: var(--radius-sm);
+  padding: 3px 8px;
+}
+
+.v-funnel__metric {
+  font-family: var(--font-mono);
+  font-size: 12px; font-weight: 600;
+  color: var(--text-mid); flex-shrink: 0;
+}
+.v-funnel__metric--accent { color: var(--accent); font-size: 18px; }
+
+.v-funnel__conn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+}
+.v-funnel__conn::before,
+.v-funnel__conn::after {
+  content: '';
+  display: block;
+  width: 1px; height: 8px;
+  background: var(--border-strong);
+}
+
+.v-funnel__pct {
+  font-family: var(--font-mono);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 3px 10px;
+}
+.v-funnel__pct--accent {
+  color: var(--accent);
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+
+/* ============================================================
+   Slide ⑤ — Chart
+   ============================================================ */
+.s-chart-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+.s-chart-top .slide-title { margin-bottom: 0; }
+.s-chart-top .slide-label { margin-bottom: 8px; }
+
+.s-chart-stats { display: flex; gap: 14px; flex-shrink: 0; }
+
+.slide--chart .chart {
+  flex: 1;
+  min-height: 0;
+  height: calc(100vh - 360px);
+}
+
+.slide--chart .insight-box { margin-top: 10px; flex-shrink: 0; }
+
+/* ============================================================
+   Slide ⑧ — Unit Economics
+   ============================================================ */
+.s-econ {
+  display: flex;
+  align-items: stretch;
+  max-width: 680px;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 16px 0 14px;
+  flex-shrink: 0;
+}
+
+.s-econ__node {
+  flex: 1;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.s-econ__node--left { background: var(--bg-elev-2); }
+.s-econ__node--right {
+  background: linear-gradient(135deg, var(--bg-elev-1), var(--accent-soft));
+  border-left: 1px solid var(--accent-line);
+}
+
+.s-econ__arrow {
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  font-family: var(--font-mono);
+  font-size: 22px;
+  color: var(--accent);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  background: var(--accent-soft);
+  flex-shrink: 0;
+}
+
+.s-econ__value {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 50px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1;
+}
+.s-econ__value--accent { color: var(--accent); }
+
+.s-econ__label {
+  font-family: var(--font-mono);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+
+.s-econ__sub { font-size: 12px; color: var(--text-dim); }
+
+.s-econ-support {
+  display: flex;
+  gap: 14px;
+  max-width: 680px;
+  flex-shrink: 0;
+}
+
+.s-econ-kpi {
+  flex: 1;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+
+.s-econ-kpi__value {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text); line-height: 1;
+  margin-bottom: 6px;
+}
+
+.s-econ-kpi__label {
+  font-family: var(--font-mono);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-dim); margin-bottom: 3px;
+}
+
+.s-econ-kpi__sub { font-size: 12px; color: var(--text-dim); }
+
+/* ============================================================
+   Slide ⑨ — About
+   ============================================================ */
+.slide--about .capability-grid { margin-bottom: 14px; }
+.slide--about .capability__body { font-size: 13px; }
+
+.s-mini-pipeline { margin-bottom: 0; }
+.s-mini-pipeline .pipeline__step { padding: 12px 14px; }
+.s-mini-pipeline .pipeline__name { font-size: 11px; letter-spacing: 0.04em; }
+.s-mini-pipeline .pipeline__desc { display: none; }
+.s-mini-pipeline .pipeline__model { font-size: 9px; }
+
+/* ============================================================
+   Slide ⑩ — Contact
+   ============================================================ */
+.s-contact__title {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 5vw, 62px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.s-contact__sub {
+  font-family: var(--font-mono);
+  font-size: 13px; letter-spacing: 0.04em;
+  color: var(--text-dim);
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+
+.s-contact__cue {
+  font-size: 15px; line-height: 1.6;
+  color: var(--text-mid);
+  max-width: 580px;
+  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+
+.s-contact__action {
+  font-size: 14px; color: var(--text-dim);
+  margin-bottom: 24px;
+  flex-shrink: 0;
+}
+
+.s-contact-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 28px;
+  flex-shrink: 0;
+}
+
+.s-cta {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 16px 22px;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none; color: inherit;
+  transition: border-color 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+  min-width: 170px;
+}
+.s-cta:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+
+.s-cta--primary {
+  border-color: var(--accent-line);
+  background: linear-gradient(135deg, var(--bg-elev-1), var(--accent-soft));
+  min-width: 260px;
+}
+.s-cta--primary:hover { border-color: var(--accent); }
+
+.s-cta__label {
+  font-family: var(--font-mono);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+}
+.s-cta--primary .s-cta__label { color: var(--accent); }
+
+.s-cta__value {
+  font-family: var(--font-display);
+  font-size: 15px; font-weight: 600;
+  color: var(--text);
+}
+
+.s-cta__note { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+
+.s-contact__copy {
+  font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: 0.08em;
+  color: var(--text-faint);
+  margin-top: 14px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   Mobile Fallback — Vertical Scroll (< 1024px)
+   ============================================================ */
+@media (max-width: 1023px) {
+  .deck-wrap {
+    position: static;
+    overflow: visible;
+    height: auto;
+  }
+
+  .deck {
+    flex-direction: column;
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .slide {
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    overflow: visible;
+    padding: 80px 0 60px;
+    justify-content: flex-start;
+  }
+
+  .slide__inner {
+    height: auto;
+    overflow: visible;
+    padding: 0 6vw;
+  }
+
+  .deck-bar { display: none; }
+
+  /* Cover */
+  .slide--cover .slide__inner { padding-left: 6vw; }
+  .s-cover__title { font-size: clamp(40px, 12vw, 64px); }
+  .s-cover__proof { flex-direction: column; gap: 12px; }
+
+  /* Snapshot */
+  .s-snap { grid-template-columns: 1fr; gap: 28px; }
+  .s-kpi-row { grid-template-columns: 1fr; }
+
+  /* Chart */
+  .s-chart-top { flex-direction: column; gap: 12px; }
+  .s-chart-stats { flex-wrap: wrap; }
+  .slide--chart .chart { height: 280px; flex: none; }
+
+  /* Loop */
+  .slide--loop .slide__inner { padding-left: 6vw; padding-right: 6vw; }
+
+  /* Funnel */
+  .slide__inner--funnel { align-items: flex-start; }
+  .v-funnel { max-width: 100%; }
+
+  /* Economics */
+  .s-econ { flex-direction: column; max-width: 100%; }
+  .s-econ__arrow {
+    padding: 10px 16px;
+    border-left: none; border-right: none;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    justify-content: center;
+  }
+  .s-econ-support { flex-direction: column; max-width: 100%; }
+
+  /* Contact */
+  .slide__inner--center { align-items: flex-start; text-align: left; }
+  .s-contact-links { flex-direction: column; justify-content: flex-start; }
+  .s-cta { min-width: auto; }
+}
