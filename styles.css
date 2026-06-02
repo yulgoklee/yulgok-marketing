@@ -2661,6 +2661,7 @@ a.contact-card:hover {
   color: var(--text-dim);
 }
 
+/* 연락 유도 한 줄 (Tier 2) */
 .contact-cue {
   margin: 0 0 24px;
   font-size: 14px;
