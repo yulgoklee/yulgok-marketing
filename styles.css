@@ -2729,14 +2729,9 @@ a.contact-card:hover {
   padding-bottom: 52px;
 }
 
-.slide__inner--center {
-  align-items: center;
-  text-align: center;
-}
-
-.slide__inner--funnel {
-  align-items: center;
-}
+/* (classes kept for mobile fallback references but no longer set center alignment) */
+.slide__inner--center { }
+.slide__inner--funnel { }
 
 /* ---- Bottom nav bar ---- */
 .deck-bar {
@@ -2838,13 +2833,14 @@ a.contact-card:hover {
 
 .s-cover__title {
   font-family: var(--font-display);
-  font-size: clamp(50px, 8vw, 108px);
+  font-size: clamp(48px, 6.5vw, 100px);
   font-weight: 600;
-  line-height: 1.02;
+  line-height: 1.05;
   letter-spacing: -0.03em;
   color: var(--text);
-  margin-bottom: 32px;
+  margin-bottom: 28px;
   flex-shrink: 0;
+  white-space: nowrap; /* 줄바꿈은 <br>만 허용 — 뷰포트 너비로 3분할 방지 */
 }
 
 .s-cover__title em {
@@ -3255,7 +3251,7 @@ a.contact-card:hover {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 28px;
   flex-shrink: 0;
 }
@@ -3371,7 +3367,26 @@ a.contact-card:hover {
   .s-econ-support { flex-direction: column; max-width: 100%; }
 
   /* Contact */
-  .slide__inner--center { align-items: flex-start; text-align: left; }
   .s-contact-links { flex-direction: column; justify-content: flex-start; }
   .s-cta { min-width: auto; }
+}
+
+/* ---- Tier 3 overrides: alignment & typography fixes ---- */
+
+/* Contact slide closing quote: left-align within slide */
+.slide--contact .closing {
+  text-align: left;
+  margin: 0;
+  padding: 28px 0 0;
+  font-size: clamp(18px, 2.4vw, 28px);
+}
+
+/* Cover: ensure white-space nowrap doesn't overflow on small desktops */
+@media (max-width: 1280px) {
+  .s-cover__title { white-space: normal; }
+}
+
+/* Mobile: cover title normal wrap */
+@media (max-width: 1023px) {
+  .s-cover__title { white-space: normal; font-size: clamp(40px, 12vw, 64px); }
 }
