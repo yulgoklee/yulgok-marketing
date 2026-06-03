@@ -185,54 +185,63 @@
         </div>
       </section>
 
-      <!-- ④ Funnel: vertical funnel visualization -->
+      <!-- ④ Funnel: SVG trapezoid funnel + step legend -->
       <section class="slide slide--funnel" id="funnel" data-slide="3">
         <div class="slide__inner">
           <p class="slide-label">04 / 실제 운영 퍼널</p>
           <h2 class="slide-title">실제로 이렇게 굴렸다</h2>
-          <div class="v-funnel" aria-label="마케팅 퍼널 4단계">
-            <div class="v-funnel__step" style="--fw:100%">
-              <div class="v-funnel__bar">
-                <span class="v-funnel__num">01</span>
-                <span class="v-funnel__name">네이버 블로그</span>
-                <span class="v-funnel__tag">인지</span>
-                <span class="v-funnel__metric">1,143개 · 24K 조회</span>
+
+          <div class="funnel-viz">
+            <!-- 좌: SVG 사다리꼴 깔때기 -->
+            <svg class="funnel-svg" viewBox="0 0 400 360" preserveAspectRatio="xMidYMid meet"
+                 role="img" aria-label="마케팅 퍼널 4단계 깔때기">
+              <!-- 단1: 100% 폭 (±180) -->
+              <polygon points="20,10 380,10 350,90 50,90" class="funnel-seg funnel-seg--1"/>
+              <!-- 단2: 74% 폭 (±150→±126) -->
+              <polygon points="50,98 350,98 326,178 74,178" class="funnel-seg funnel-seg--2"/>
+              <!-- 단3: 52% 폭 (±126→±108) -->
+              <polygon points="74,186 326,186 308,266 92,266" class="funnel-seg funnel-seg--3"/>
+              <!-- 단4: 38% 폭 (±108→±95) — 민트 강조 -->
+              <polygon points="92,274 308,274 295,354 105,354" class="funnel-seg funnel-seg--4"/>
+            </svg>
+
+            <!-- 우: 단계별 정보 -->
+            <div class="funnel-legend">
+              <div class="funnel-legend__row">
+                <span class="funnel-legend__num">01</span>
+                <div class="funnel-legend__body">
+                  <div class="funnel-legend__name">네이버 블로그 <span class="funnel-legend__tag">인지</span></div>
+                  <div class="funnel-legend__metric">1,143개 · 24K 조회</div>
+                </div>
+                <span class="funnel-legend__pct">100%</span>
               </div>
-            </div>
-            <div class="v-funnel__conn" aria-hidden="true">
-              <span class="v-funnel__pct">→ 10.1% 전환</span>
-            </div>
-            <div class="v-funnel__step" style="--fw:74%">
-              <div class="v-funnel__bar">
-                <span class="v-funnel__num">02</span>
-                <span class="v-funnel__name">인포크링크</span>
-                <span class="v-funnel__tag">관심</span>
-                <span class="v-funnel__metric">블로그→인포크 10.1%</span>
+              <div class="funnel-legend__row">
+                <span class="funnel-legend__num">02</span>
+                <div class="funnel-legend__body">
+                  <div class="funnel-legend__name">인포크링크 <span class="funnel-legend__tag">관심</span></div>
+                  <div class="funnel-legend__metric">블로그 → 인포크</div>
+                </div>
+                <span class="funnel-legend__pct">10.1%</span>
               </div>
-            </div>
-            <div class="v-funnel__conn" aria-hidden="true">
-              <span class="v-funnel__pct">→ 상담 유도</span>
-            </div>
-            <div class="v-funnel__step" style="--fw:52%">
-              <div class="v-funnel__bar">
-                <span class="v-funnel__num">03</span>
-                <span class="v-funnel__name">카카오채널</span>
-                <span class="v-funnel__tag">고려</span>
-                <span class="v-funnel__metric">자동 응대</span>
+              <div class="funnel-legend__row">
+                <span class="funnel-legend__num">03</span>
+                <div class="funnel-legend__body">
+                  <div class="funnel-legend__name">카카오채널 <span class="funnel-legend__tag">고려</span></div>
+                  <div class="funnel-legend__metric">자동 응대 · 상담 유도</div>
+                </div>
+                <span class="funnel-legend__pct">—</span>
               </div>
-            </div>
-            <div class="v-funnel__conn" aria-hidden="true">
-              <span class="v-funnel__pct v-funnel__pct--accent">→ 38% 상담 전환</span>
-            </div>
-            <div class="v-funnel__step v-funnel__step--accent" style="--fw:38%">
-              <div class="v-funnel__bar">
-                <span class="v-funnel__num">04</span>
-                <span class="v-funnel__name">상담 요청</span>
-                <span class="v-funnel__tag">전환</span>
-                <span class="v-funnel__metric v-funnel__metric--accent">38%</span>
+              <div class="funnel-legend__row funnel-legend__row--accent">
+                <span class="funnel-legend__num">04</span>
+                <div class="funnel-legend__body">
+                  <div class="funnel-legend__name">상담 요청 <span class="funnel-legend__tag">전환</span></div>
+                  <div class="funnel-legend__metric">상담 전환율</div>
+                </div>
+                <span class="funnel-legend__pct funnel-legend__pct--accent">38%</span>
               </div>
             </div>
           </div>
+
           <div class="insight-box" style="margin-top:20px;">
             <span class="insight-box__label">맥락</span>
             SBS아카데미 전국 18개 직영 지점. 각 지점 담당자가 <strong>모집·컨택·상담·등록·관리 5단계를 개인이 책임</strong>지는 구조. 결과의 차이는 곧 마케팅 설계의 차이였습니다.

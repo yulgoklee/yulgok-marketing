@@ -3133,20 +3133,19 @@ a.contact-card:hover {
 .s-econ__node--left { background: var(--bg-elev-2); }
 .s-econ__node--right {
   background: linear-gradient(135deg, var(--bg-elev-1), var(--accent-soft));
-  border-left: 1px solid var(--accent-line);
+  /* border-left 제거 — 화살표 칸과 만나는 겹침 띠 해소 */
 }
 
 .s-econ__arrow {
   display: flex;
   align-items: center;
-  padding: 0 18px;
+  padding: 0 12px;
   font-family: var(--font-mono);
   font-size: 22px;
   color: var(--accent);
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-  background: var(--accent-soft);
+  background: transparent;   /* 배경 제거 — 겹쳐 보임 해소 */
   flex-shrink: 0;
+  /* border-left / border-right 삭제 */
 }
 
 .s-econ__value {
@@ -3448,4 +3447,122 @@ a.contact-card:hover {
 @media (max-width: 1023px) {
   .s-comp-grid { grid-template-columns: 1fr; }
   .s-snap__profile .profile-card { height: auto; }
+}
+
+/* ============================================================
+   Slide ④ — SVG Trapezoid Funnel (replaces v-funnel bars)
+   ============================================================ */
+
+/* 2-column: SVG left, legend right */
+.funnel-viz {
+  display: grid;
+  grid-template-columns: minmax(240px, 360px) 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-top: 28px;
+  flex-shrink: 0;
+}
+
+.funnel-svg {
+  width: 100%;
+  height: auto;
+  max-height: 54vh;
+}
+
+/* SVG trapezoid segments: grey → mint progression */
+.funnel-seg { stroke-width: 1.5; }
+.funnel-seg--1 { fill: var(--bg-elev-2); stroke: var(--border-strong); }
+.funnel-seg--2 { fill: var(--bg-elev-3); stroke: var(--border-strong); }
+.funnel-seg--3 { fill: rgba(0,217,163,0.10); stroke: var(--accent-line); }
+.funnel-seg--4 { fill: rgba(0,217,163,0.22); stroke: var(--accent); }
+
+/* Right: step legend */
+.funnel-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.funnel-legend__row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.25s var(--ease-out);
+}
+
+.funnel-legend__row--accent {
+  border-color: var(--accent-line);
+  background: linear-gradient(135deg, var(--bg-elev-1), var(--accent-soft));
+}
+
+.funnel-legend__num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+.funnel-legend__body { flex: 1; }
+
+.funnel-legend__name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.funnel-legend__tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.funnel-legend__row--accent .funnel-legend__tag {
+  color: var(--accent);
+  border-color: var(--accent-line);
+}
+
+.funnel-legend__metric {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.funnel-legend__pct {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-mid);
+  flex-shrink: 0;
+  min-width: 56px;
+  text-align: right;
+}
+
+.funnel-legend__pct--accent { color: var(--accent); }
+
+/* Mobile: stack svg above legend */
+@media (max-width: 1023px) {
+  .funnel-viz {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .funnel-svg {
+    max-height: 38vh;
+    margin: 0 auto;
+    display: block;
+  }
 }
