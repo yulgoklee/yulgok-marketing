@@ -2620,7 +2620,7 @@ a.contact-card:hover {
 }
 
 /* --- Loop stages (pipeline 재사용 + 미세조정) --- */
-.loop-stages .pipeline__step { padding: 24px 18px; }
+.loop-stages .pipeline__step { padding: 28px 22px; }
 .loop-stages .pipeline__desc { font-size: 12.5px; }
 
 /* --- Performance bridge note --- */
@@ -2986,7 +2986,15 @@ a.contact-card:hover {
 /* ============================================================
    Slide ③ — Loop
    ============================================================ */
-.slide--loop .slide__inner { max-width: 100%; padding-left: 4vw; padding-right: 4vw; }
+.slide--loop .slide__inner {
+  max-width: 100%;
+  padding-left: 4vw;
+  padding-right: 4vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
 .slide--loop .pipeline.loop-stages { margin-top: 4px; margin-bottom: 0; flex-shrink: 0; }
 
 /* ============================================================
