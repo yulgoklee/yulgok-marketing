@@ -3554,6 +3554,13 @@ a.contact-card:hover {
 
 .funnel-legend__pct--accent { color: var(--accent); }
 
+.funnel-legend__pct--label {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
 /* Mobile: stack svg above legend */
 @media (max-width: 1023px) {
   .funnel-viz {
