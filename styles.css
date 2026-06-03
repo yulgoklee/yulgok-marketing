@@ -2620,8 +2620,18 @@ a.contact-card:hover {
 }
 
 /* --- Loop stages (pipeline 재사용 + 미세조정) --- */
-.loop-stages .pipeline__step { padding: 28px 22px; }
+.loop-stages .pipeline__step {
+  padding: 32px 24px;
+  min-height: 42vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .loop-stages .pipeline__desc { font-size: 12.5px; }
+.loop-stages .pipeline__num   { margin-bottom: 20px; }
+.loop-stages .pipeline__model { margin-bottom: 16px; }
+.loop-stages .pipeline__name  { margin-bottom: 12px; }
+.loop-stages .pipeline__arrow { display: flex; align-items: center; }
 
 /* --- Performance bridge note --- */
 .bridge-note {
