@@ -3000,16 +3000,21 @@ a.contact-card:hover {
   flex-shrink: 0;
 }
 
-.v-funnel__step { width: var(--fw, 100%); }
+.v-funnel__step {
+  width: var(--fw, 100%);
+  display: flex;
+  justify-content: center;  /* 막대를 단계 전체 폭 안에서 가운데 정렬 */
+}
 
 .v-funnel__bar {
   display: flex;
   align-items: center;
   gap: 12px;
+  width: 100%;              /* 부모(step)에서 넘겨받은 --fw 폭을 그대로 사용 */
   background: var(--bg-elev-1);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 13px 18px;
+  padding: 16px 22px;
   transition: border-color 0.3s;
 }
 
@@ -3051,14 +3056,14 @@ a.contact-card:hover {
 .v-funnel__conn {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 5px 0;
+  gap: 6px;
+  padding: 4px 0;           /* 연결부 세로 압축 */
 }
 .v-funnel__conn::before,
 .v-funnel__conn::after {
   content: '';
   display: block;
-  width: 1px; height: 8px;
+  width: 1px; height: 6px;
   background: var(--border-strong);
 }
 
@@ -3146,7 +3151,7 @@ a.contact-card:hover {
 
 .s-econ__value {
   font-family: var(--font-display);
-  font-size: clamp(32px, 4vw, 50px);
+  font-size: clamp(44px, 6vw, 72px);  /* 주인공 — 더 크게 */
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--text);
@@ -3166,7 +3171,8 @@ a.contact-card:hover {
 .s-econ-support {
   display: flex;
   gap: 14px;
-  width: 100%;              /* s-econ과 폭 맞춤 */
+  width: 100%;
+  margin-top: 20px;
   flex-shrink: 0;
 }
 
@@ -3378,4 +3384,68 @@ a.contact-card:hover {
 /* Mobile: cover title */
 @media (max-width: 1023px) {
   .s-cover__title { font-size: clamp(36px, 11vw, 60px); }
+}
+
+/* ============================================================
+   Layout balance v2 — 3 slide fixes (snapshot/funnel/efficiency)
+   ============================================================ */
+
+/* ① Snapshot: competency 2×2 cards */
+.s-comp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+  flex-shrink: 0;
+}
+
+.s-comp-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.25s var(--ease-out);
+}
+.s-comp-card:hover { border-color: var(--accent-line); }
+
+.s-comp-card__num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.s-comp-card__name {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* ① Snapshot: summary line at bottom of right column */
+.s-snap__summary {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 15px;
+  color: var(--text-mid);
+  line-height: 1.7;
+  flex-shrink: 0;
+}
+
+/* ① Snapshot: stretch both columns to same height */
+.s-snap { align-items: stretch; }
+.s-snap__profile .profile-card { height: 100%; box-sizing: border-box; }
+
+/* ③ Efficiency: bridge-note tighter margin */
+.slide--perf .bridge-note { margin-top: 16px; }
+
+/* Mobile fallback overrides */
+@media (max-width: 1023px) {
+  .s-comp-grid { grid-template-columns: 1fr; }
+  .s-snap__profile .profile-card { height: auto; }
 }
