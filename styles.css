@@ -2621,16 +2621,16 @@ a.contact-card:hover {
 
 /* --- Loop stages (pipeline 재사용 + 미세조정) --- */
 .loop-stages .pipeline__step {
-  padding: 32px 24px;
-  min-height: 42vh;
+  padding: 30px 24px;
+  min-height: 340px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
-.loop-stages .pipeline__desc { font-size: 12.5px; }
-.loop-stages .pipeline__num   { margin-bottom: 20px; }
-.loop-stages .pipeline__model { margin-bottom: 16px; }
-.loop-stages .pipeline__name  { margin-bottom: 12px; }
+.loop-stages .pipeline__desc  { font-size: 13px; line-height: 1.65; }
+.loop-stages .pipeline__num   { margin-bottom: 16px; }
+.loop-stages .pipeline__model { margin-bottom: 14px; }
+.loop-stages .pipeline__name  { margin-bottom: 10px; }
 .loop-stages .pipeline__arrow { display: flex; align-items: center; }
 
 /* --- Performance bridge note --- */
