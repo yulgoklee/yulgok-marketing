@@ -429,15 +429,24 @@ if (document.readyState === 'loading') {
     });
 
     /* Mouse wheel + trackpad horizontal swipe */
+    var wheelLocked = false;   /* 한 번 넘긴 뒤 스크롤이 멈출 때까지 잠금 */
     document.addEventListener('wheel', function (e) {
       if (!isDesktop()) return;
       e.preventDefault();
       var delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-      wheelAcc += delta;
+
+      /* 스크롤이 이어지는 동안 타이머 연장: 120ms 정적이어야 잠금 해제 */
       clearTimeout(wheelTimer);
-      wheelTimer = setTimeout(function () { wheelAcc = 0; }, 300);
-      if (wheelAcc > 60)  { wheelAcc = 0; goTo(cur + 1); }
-      else if (wheelAcc < -60) { wheelAcc = 0; goTo(cur - 1); }
+      wheelTimer = setTimeout(function () {
+        wheelAcc = 0;
+        wheelLocked = false;
+      }, 120);
+
+      if (wheelLocked) return;   /* 잠금 중엔 누적도 넘김도 안 함 */
+
+      wheelAcc += delta;
+      if (wheelAcc > 90)  { wheelAcc = 0; wheelLocked = true; goTo(cur + 1); }
+      else if (wheelAcc < -90) { wheelAcc = 0; wheelLocked = true; goTo(cur - 1); }
     }, { passive: false });
 
     /* Nav links → slide in desktop mode */
