@@ -340,8 +340,8 @@ if (document.readyState === 'loading') {
     3: 'loop',    /* funnel is part of loop section */
     4: 'cases',
     5: 'cases',
-    6: 'cases',
-    7: 'performance',
+    6: 'performance',
+    7: 'cases',
     8: 'about',
     9: 'contact'
   };
