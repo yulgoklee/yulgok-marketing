@@ -122,9 +122,9 @@
                   <div class="s-kpi__sub">개인투자로 만든 효율</div>
                 </div>
                 <div class="s-kpi">
-                  <div class="s-kpi__value" data-counter="7.5" data-suffix="x" data-decimals="1">0.0x</div>
-                  <div class="s-kpi__label">콘텐츠 생산성</div>
-                  <div class="s-kpi__sub">직접 만든 AI 시스템으로</div>
+                  <div class="s-kpi__value" data-counter="1143" data-suffix="건">0건</div>
+                  <div class="s-kpi__label">직접 제작 콘텐츠</div>
+                  <div class="s-kpi__sub">AI 파이프라인 자체 설계, 26개월</div>
                 </div>
               </div>
               <p class="slide-label" style="margin-top:32px;">핵심 역량</p>
@@ -144,8 +144,11 @@
       <section class="slide slide--loop" id="loop" data-slide="2">
         <div class="slide__inner">
           <p class="slide-label">03 / 그로스 루프</p>
-          <h2 class="slide-title">다섯 단계를, 혼자 다 <em>돌렸습니다</em></h2>
-          <p class="slide-desc">가설을 세우는 사람, 실험하는 사람, 측정하는 사람이 따로 있지 않았습니다. 처음부터 끝까지 한 사람이 운영했고, 무엇이 통했고 통하지 않았는지 직접 파악했습니다.</p>
+          <h2 class="slide-title">캠페인이 아니라, <em>루프</em>로 일합니다</h2>
+          <p class="slide-desc">한 번 치고 끝내지 않습니다. 가설 → 실험 → 측정 → 다시 가설로, 매 바퀴 더 정확해집니다.</p>
+          <div class="loop-aarrr-strip" aria-label="이 루프가 다루는 영역">
+            이 루프가 도는 대상 — <span>획득</span> · <span>전환</span> · <span>리텐션</span> · <span>수익</span>
+          </div>
           <div class="pipeline loop-stages" aria-label="그로스 루프 5단계">
             <div class="pipeline__step">
               <div class="pipeline__num">01</div>
@@ -190,6 +193,7 @@
         <div class="slide__inner">
           <p class="slide-label">04 / 실제 운영 퍼널</p>
           <h2 class="slide-title">실제로 이렇게 굴렸다</h2>
+          <p class="slide-desc funnel-intro">학원 매출은 문의 → 상담 → 등록으로 흐릅니다. <strong>문의가 모든 매출의 입구입니다.</strong></p>
 
           <div class="funnel-viz">
             <!-- 좌: SVG 사다리꼴 깔때기 -->
@@ -210,7 +214,10 @@
               <div class="funnel-legend__row">
                 <span class="funnel-legend__num">01</span>
                 <div class="funnel-legend__body">
-                  <div class="funnel-legend__name">네이버 블로그 <span class="funnel-legend__tag">인지</span></div>
+                  <div class="funnel-legend__name">
+                    <span class="funnel-legend__stage">인지</span>
+                    <span class="funnel-legend__channel">네이버 블로그</span>
+                  </div>
                   <div class="funnel-legend__metric">1,143개 · 24K 조회</div>
                 </div>
                 <span class="funnel-legend__pct">100%</span>
@@ -218,7 +225,10 @@
               <div class="funnel-legend__row">
                 <span class="funnel-legend__num">02</span>
                 <div class="funnel-legend__body">
-                  <div class="funnel-legend__name">인포크링크 <span class="funnel-legend__tag">관심</span></div>
+                  <div class="funnel-legend__name">
+                    <span class="funnel-legend__stage">관심</span>
+                    <span class="funnel-legend__channel">인포크링크</span>
+                  </div>
                   <div class="funnel-legend__metric">블로그 → 인포크</div>
                 </div>
                 <span class="funnel-legend__pct">10.1%</span>
@@ -226,7 +236,10 @@
               <div class="funnel-legend__row">
                 <span class="funnel-legend__num">03</span>
                 <div class="funnel-legend__body">
-                  <div class="funnel-legend__name">카카오채널 <span class="funnel-legend__tag">고려</span></div>
+                  <div class="funnel-legend__name">
+                    <span class="funnel-legend__stage">고려</span>
+                    <span class="funnel-legend__channel">카카오채널</span>
+                  </div>
                   <div class="funnel-legend__metric">자동 응대</div>
                 </div>
                 <span class="funnel-legend__pct funnel-legend__pct--label">상담 유도</span>
@@ -234,7 +247,10 @@
               <div class="funnel-legend__row funnel-legend__row--accent">
                 <span class="funnel-legend__num">04</span>
                 <div class="funnel-legend__body">
-                  <div class="funnel-legend__name">상담 요청 <span class="funnel-legend__tag">전환</span></div>
+                  <div class="funnel-legend__name">
+                    <span class="funnel-legend__stage">전환</span>
+                    <span class="funnel-legend__channel">상담 요청</span>
+                  </div>
                   <div class="funnel-legend__metric">상담 전환율</div>
                 </div>
                 <span class="funnel-legend__pct funnel-legend__pct--accent">38%</span>
@@ -246,36 +262,62 @@
             <span class="insight-box__label">맥락</span>
             SBS아카데미 전국 18개 직영 지점. 각 지점 담당자가 <strong>모집·컨택·상담·등록·관리 5단계를 개인이 책임</strong>지는 구조. 결과의 차이는 곧 마케팅 설계의 차이였습니다.
           </div>
+          <p class="funnel-ownership">이 퍼널 전체를 혼자 설계하고 운영했습니다 — 콘텐츠도, 광고도, 추적 트래커도.</p>
         </div>
       </section>
 
-      <!-- ⑤ Chart: D3 line chart highlight -->
-      <section class="slide slide--chart" id="cases" data-slide="4">
-        <div class="slide__inner slide__inner--chart">
-          <div class="s-chart-top">
-            <div>
-              <p class="slide-label">05 / 역주행 성장</p>
-              <h2 class="slide-title">시장이 줄어드는데, 혼자 <em>역주행</em>했다</h2>
+      <!-- ⑤ Judgment: decision flow + comparison bar -->
+      <section class="slide slide--p5" id="cases" data-slide="4">
+        <div class="slide__inner">
+          <p class="slide-label">05 / 판단 <span class="aarrr-chip">획득 · Acquisition</span></p>
+          <h2 class="slide-title">매출이 안 나올 때, <em>무엇부터</em> 봤나</h2>
+          <p class="slide-desc">매출이 안 나오면 어디가 새는지 따졌습니다. 그런데 그걸 따지려면 맨 앞 '문의'에 충분한 양이 있어야 보입니다. 그래서 문의부터 키웠습니다.</p>
+
+          <div class="p5-body">
+            <!-- 좌: 판단 흐름 4단계 -->
+            <div class="p5-flow" aria-label="판단 흐름 4단계">
+              <div class="p5-flow__step">
+                <span class="p5-flow__num">1</span>
+                <span class="p5-flow__text">매출이 안 나옵니다</span>
+              </div>
+              <div class="p5-flow__arrow" aria-hidden="true">↓</div>
+              <div class="p5-flow__step">
+                <span class="p5-flow__num">2</span>
+                <span class="p5-flow__text">문의 · 컨택 · 상담 중 어디가 새는지 따집니다</span>
+              </div>
+              <div class="p5-flow__arrow" aria-hidden="true">↓</div>
+              <div class="p5-flow__step">
+                <span class="p5-flow__num">3</span>
+                <span class="p5-flow__text">그걸 따지려면 맨 앞 '문의'에 양이 있어야 보입니다</span>
+              </div>
+              <div class="p5-flow__arrow" aria-hidden="true">↓</div>
+              <div class="p5-flow__step p5-flow__step--accent">
+                <span class="p5-flow__num">4</span>
+                <span class="p5-flow__text">그래서 <strong><em>문의</em>부터 키웠습니다</strong></span>
+              </div>
             </div>
-            <div class="s-chart-stats">
-              <div class="mini-stat">
-                <div class="mini-stat__value">16<span>건</span></div>
-                <div class="mini-stat__label">2년차 월평균</div>
+
+            <!-- 우: 비교 막대 -->
+            <div class="p5-right">
+              <p class="p5-compare__context">같은 18개 지점 · 같은 조건 — 시장은 멈췄지만, 저는 늘었습니다</p>
+              <div class="p5-compare">
+                <div class="p5-compare__row">
+                  <span class="p5-compare__who">전국 평균</span>
+                  <div class="p5-compare__track">
+                    <div class="p5-compare__bar" style="width:18.75%"></div>
+                  </div>
+                  <span class="p5-compare__val">3건</span>
+                </div>
+                <div class="p5-compare__row p5-compare__row--accent">
+                  <span class="p5-compare__who">저</span>
+                  <div class="p5-compare__track">
+                    <div class="p5-compare__bar p5-compare__bar--accent" style="width:100%"></div>
+                  </div>
+                  <span class="p5-compare__val">16건</span>
+                </div>
               </div>
-              <div class="mini-stat">
-                <div class="mini-stat__value">3<span>건</span></div>
-                <div class="mini-stat__label">전국 평균</div>
-              </div>
-              <div class="mini-stat mini-stat--accent">
-                <div class="mini-stat__value">+433<span>%</span></div>
-                <div class="mini-stat__label">상회율</div>
-              </div>
+              <p class="p5-footnote">핵심은 16이라는 숫자가 아니라, 어디부터 볼지 데이터로 고른 <strong>판단</strong>입니다.</p>
             </div>
-          </div>
-          <div class="chart" id="chart-inquiry" aria-label="개인문의 추이 라인 차트"></div>
-          <div class="insight-box">
-            <span class="insight-box__label">인사이트</span>
-            전국 18개 지점이 <strong>같은 브랜드, 같은 조건, 같은 기간에 경쟁</strong>했습니다. 전국 평균 4→3건 하락 구간에 개인문의 9.3→16건으로 상승. 예산이 아니라 설계로 만든 격차입니다.
           </div>
         </div>
       </section>
@@ -285,10 +327,10 @@
         <div class="slide__inner">
           <p class="slide-label">06 / 양보다 질</p>
           <h2 class="slide-title">'많이'가 아니라 '맞는 사람'을 <em>데려왔다</em></h2>
-          <p class="slide-desc">문의 수 증가는 +43%였지만, 리드·등록 한 건당 가치는 그보다 훨씬 크게 올랐습니다.</p>
+          <p class="slide-desc">문의(양)를 늘린 다음에는, 한 건의 가치 자체를 끌어올렸습니다.</p>
           <div class="qg-grid">
             <article class="qg-card">
-              <div class="qg-card__label">리드당 매출</div>
+              <div class="qg-card__label">리드당 매출 <span class="aarrr-chip">수익</span></div>
               <div class="qg-card__flow">
                 <span class="qg-card__from">21만원</span>
                 <span class="qg-card__arrow" aria-hidden="true">→</span>
@@ -298,7 +340,7 @@
               <div class="qg-card__note">1년차 → 2년차</div>
             </article>
             <article class="qg-card qg-card--highlight">
-              <div class="qg-card__label">등록당 매출</div>
+              <div class="qg-card__label">등록당 매출 <span class="aarrr-chip">수익</span></div>
               <div class="qg-card__flow">
                 <span class="qg-card__from">60만원</span>
                 <span class="qg-card__arrow" aria-hidden="true">→</span>
@@ -308,7 +350,7 @@
               <div class="qg-card__note">1년차 → 2년차</div>
             </article>
             <article class="qg-card">
-              <div class="qg-card__label">등록단가</div>
+              <div class="qg-card__label">등록단가 <span class="aarrr-chip">수익</span></div>
               <div class="qg-card__flow">
                 <span class="qg-card__from">53만원</span>
                 <span class="qg-card__arrow" aria-hidden="true">→</span>
@@ -318,9 +360,16 @@
               <div class="qg-card__note">평균 등록단가</div>
             </article>
           </div>
-          <div class="insight-box">
-            <span class="insight-box__label">한 줄 더</span>
-            두 가지가 이 성장을 받칩니다. 재구매가 늘어 LTV가 올랐고(추가매출 비중 14%→39%), 콘텐츠는 발행하고 1~2개월 뒤부터 문의로 이어지는 경향이 뚜렷했습니다. 상세 분석은 노션에 있습니다.
+          <!-- 리텐션 + 활성화 띠 -->
+          <div class="p6-strips">
+            <div class="p6-strip">
+              <span class="p6-strip__label aarrr-chip aarrr-chip--retention">리텐션</span>
+              <span class="p6-strip__text">재구매 비중 14% → 39% — 한 번 등록한 학생이 더 많은 강좌를 수강했습니다.</span>
+            </div>
+            <div class="p6-strip">
+              <span class="p6-strip__label aarrr-chip aarrr-chip--activation">활성화</span>
+              <span class="p6-strip__text">단계 전환 — 문의의 90% 이상이 통화로, 통화의 38%가 상담으로 연결됐습니다. 방문 상담 → 등록으로 연결.</span>
+            </div>
           </div>
         </div>
       </section>
@@ -329,7 +378,7 @@
       <section class="slide slide--decision" id="decision" data-slide="6">
         <div class="slide__inner">
           <p class="slide-label">07 / 의사결정</p>
-          <h2 class="slide-title">잘 되던 채널도, 본질에 안 맞으면 <em>손절</em>한다</h2>
+          <h2 class="slide-title">잘 되던 채널도, 본질에 안 맞으면 <em>끊습니다</em></h2>
           <article class="case-study">
             <header class="case-study__header">
               <div>
@@ -357,6 +406,7 @@
             <span class="insight-box__label">왜 이 사례인가</span>
             성과를 키우는 것만큼, <strong>안 되는 채널을 빠르게 접는 판단</strong>도 중요합니다. 같은 기준으로 네이버 알고리즘 변경에도 대응해 1주 내 노출을 회복했습니다.
           </div>
+          <p class="p7-portability">채널을 데이터로 끊고 살리는 이 판단은, 학원 상담 퍼널이든 앱 전환 퍼널이든 <strong>똑같이 작동합니다.</strong></p>
         </div>
       </section>
 
@@ -364,8 +414,8 @@
       <section class="slide slide--perf" id="performance" data-slide="7">
         <div class="slide__inner">
           <p class="slide-label">08 / 효율</p>
-          <h2 class="slide-title">회사 예산이 아니라, <em>제 돈</em>이었습니다</h2>
-          <p class="slide-desc">학원은 마케팅 예산을 따로 주지 않았습니다. 그래서 제 사비로 광고를 집행했습니다. 한 푼이 제 지갑에서 나가니, 효율은 전략이 아니라 생존이었습니다.</p>
+          <h2 class="slide-title">예산이 아니라, 머리로 만든 <em>효율</em>입니다</h2>
+          <p class="slide-desc">이 성장은 큰 예산에서 나오지 않았습니다. 월 10~30만원, 전액 사비로 광고를 집행했습니다. 한 푼이 제 지갑에서 나가니, 효율은 전략이 아니라 생존이었습니다.</p>
           <div class="s-econ">
             <div class="s-econ__node s-econ__node--left">
               <div class="s-econ__value" data-counter="2" data-suffix="만원">0만원</div>
@@ -375,8 +425,8 @@
             <div class="s-econ__arrow" aria-hidden="true">→</div>
             <div class="s-econ__node s-econ__node--right">
               <div class="s-econ__value s-econ__value--accent" data-counter="50" data-suffix="만원">0만원</div>
-              <div class="s-econ__label">등록 1건당 매출</div>
-              <div class="s-econ__sub">획득 → 전환의 단위 경제성</div>
+              <div class="s-econ__label">등록 획득 단위 경제성</div>
+              <div class="s-econ__sub">등록 1건당 매출 기준</div>
             </div>
           </div>
           <div class="s-econ-support">
@@ -394,6 +444,7 @@
           <div class="bridge-note" style="margin-top:20px;">
             <p class="bridge-note__text">방법은 단순했습니다. 검색량은 있지만 경쟁이 낮아 단가가 싼 키워드를 찾아냈습니다. 돈이 없으니 머리를 썼습니다.</p>
           </div>
+          <p class="p8-refutation">큰 예산을 다뤄본 경험은 없습니다. 대신 적은 돈으로 단위경제성을 만드는 법을 익혔습니다.</p>
         </div>
       </section>
 
